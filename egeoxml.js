@@ -49,6 +49,7 @@
 // Version 2.4   08 Dec 2007 - polylineoptions and polygonoptions
 // Version 2.5   11 Dec 2007 - EGeoXml.value() trims leading and trailing whitespace 
 // Version 2.6   08 Feb 2008 - Trailing whitespace wasn't removed in the previous change
+// Versoin 2.6-min-zoom	09 Mar 2009 - Added 'minzoom' option
 
 // Constructor
 
@@ -524,7 +525,12 @@ EGeoXml.prototype.processing = function(doc) {
     if (that.progress == 0) {
       // Shall we zoom to the bounds?
       if (!that.opts.nozoom) {
-        that.map.setZoom(that.map.getBoundsZoomLevel(that.bounds));
+        // that.map.setZoom(that.map.getBoundsZoomLevel(that.bounds));
+	// Zoom to Bounds or minzoom, whichever is smaller
+        BoundsZoomLevel = that.map.getBoundsZoomLevel(that.bounds);
+        ZoomLevel = BoundsZoomLevel > that.opts.minzoom ? that.opts.minzoom : BoundsZoomLevel
+
+        that.map.setZoom(ZoomLevel); 
         that.map.setCenter(that.bounds.getCenter());
       }
       // Shall we display the sidebar?
