@@ -51,6 +51,8 @@
 // Version 2.6   08 Feb 2008 - Trailing whitespace wasn't removed in the previous change
 // Versoin 2.6-min-zoom	09 Mar 2009 - Added 'minzoom' option
 
+// Manually added hide() and show() from version 2.9
+
 // Constructor
 
 function EGeoXml(myvar, map, url, opts) {
@@ -560,3 +562,48 @@ EGeoXml.prototype.processing = function(doc) {
       GEvent.trigger(that,"parsed");
     }
 }
+
+// Copied from Version 2.9
+// http://econym.org.uk/gmap/egeoxml.js
+EGeoXml.prototype.hide = function() {
+  for (var i=0; i<this.gmarkers.length; i++) {
+    this.gmarkers[i].hide();
+  }
+  for (var i=0; i<this.gpolylines.length; i++) {
+    this.gpolylines[i].hide();
+  }
+  for (var i=0; i<this.gpolygons.length; i++) {
+    this.gpolygons[i].hide();
+  }
+  for (var i=0; i<this.groundoverlays.length; i++) {
+    this.groundoverlays[i].hide();
+  }
+  if (this.opts.sidebarid) {
+    document.getElementById(this.opts.sidebarid).style.display="none";
+  }
+  if (this.opts.dropboxid) {
+    document.getElementById(this.opts.dropboxid).style.display="none";
+  }
+}
+
+EGeoXml.prototype.show = function() {
+  for (var i=0; i<this.gmarkers.length; i++) {
+    this.gmarkers[i].show();
+  }
+  for (var i=0; i<this.gpolylines.length; i++) {
+    this.gpolylines[i].show();
+  }
+  for (var i=0; i<this.gpolygons.length; i++) {
+    this.gpolygons[i].show();
+  }
+  for (var i=0; i<this.groundoverlays.length; i++) {
+    this.groundoverlays[i].show();
+  }
+  if (this.opts.sidebarid) {
+    document.getElementById(this.opts.sidebarid).style.display="";
+  }
+  if (this.opts.dropboxid) {
+    document.getElementById(this.opts.dropboxid).style.display="";
+  }
+}
+
