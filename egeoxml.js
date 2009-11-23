@@ -22,6 +22,13 @@
 \*********************************************************************/
 
 
+// Zac Zheng's changes:Select two files in the project view...
+// 09 Mar 2009 - Added minzoom (minimal zoom) option
+// Manually added hide() and show() from version 2.9
+// (planned) 20 Nov 2009 - Allows optional integration with ExtInfoWindow
+
+
+// Mike Williams' changes:
 // Version 0.0   17 Apr 2007 - Initial testing, just markers
 // Version 0.1   17 Apr 2007 - Sensible shadows, and a few general improvements
 // Version 0.2   18 Apr 2007 - Polylines (non-clickable, no sidebar)
@@ -49,9 +56,7 @@
 // Version 2.4   08 Dec 2007 - polylineoptions and polygonoptions
 // Version 2.5   11 Dec 2007 - EGeoXml.value() trims leading and trailing whitespace 
 // Version 2.6   08 Feb 2008 - Trailing whitespace wasn't removed in the previous change
-// Versoin 2.6-min-zoom	09 Mar 2009 - Added 'minzoom' option
 
-// Manually added hide() and show() from version 2.9
 
 // Constructor
 
@@ -195,8 +200,16 @@ EGeoXml.prototype.createMarker = function(point,name,desc,style) {
   }
 
   GEvent.addListener(m, "click", function() {
-    eval(myvar+".lastmarker = m");
-    m.openInfoWindowHtml(html1 + "</div>",iwoptions);
+    /* eval(myvar+".lastmarker = m"); */
+    egeoxml = eval(myvar);
+    egeoxml.lastmarker = m;
+
+    if(egeoxml.opts.extinfowindow) {
+      eiwoptions = egeoxml.opts.eiwoptions || {} 
+      m.openExtInfoWindow(egeoxml.map, egeoxml.opts.extinfowindow, html1 + "</div>", eiwoptions);
+    }else {
+      m.openInfoWindowHtml(html1 + "</div>",iwoptions);
+    }
   });
   if (!!this.opts.addmarker) {
     this.opts.addmarker(m,name,desc,icon.image,this.gmarkers.length)
@@ -563,7 +576,7 @@ EGeoXml.prototype.processing = function(doc) {
     }
 }
 
-// Copied from Version 2.9
+// Pulled from Version 2.9
 // http://econym.org.uk/gmap/egeoxml.js
 EGeoXml.prototype.hide = function() {
   for (var i=0; i<this.gmarkers.length; i++) {

@@ -8,3 +8,21 @@ Additional Features:
 * ExtInfoWindow[2] integration - Allows the use of ExtInfoWindow for InfoWindows(bubbles). (in development)
 
 [2] http://gmaps-utility-library-dev.googlecode.com/svn/tags/extinfowindow/1.1/docs/examples.html
+
+== ExtInfoWindow ==
+
+It is assumed you know how ExtInfoWindow works. If not, please familiarise yourself with it at [2].
+
+When creating the EGeoXml object, add the following options:
+extinfowindow: 'custom_window_name'
+eiwoptions: { option1: value1, ...} - this is optional
+
+Example:
+egeoXml = new EGeoXml("egeoXml", map, url, {
+                                      extinfowindow: 'findaport_bubble',
+                                      eiwoptions: {beakOffset: 3}
+                                });
+                                
+There is only a few lines of code changes to egeoxml.js starting at line 202.
+                              
+                              
