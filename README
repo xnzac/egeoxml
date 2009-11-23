@@ -19,7 +19,7 @@ eiwoptions: { option1: value1, ...} - this is optional. It stands for 'extendedi
 
 Example:
 egeoXml = new EGeoXml("egeoXml", map, url, {
-                                      extinfowindow: 'findaport_bubble',
+                                      extinfowindow: 'simple_window_example',
                                       eiwoptions: {beakOffset: 3}
                                 });
                                 
