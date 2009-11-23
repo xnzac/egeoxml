@@ -1,0 +1,10 @@
+Extensions to EGeoXml[1]
+
+[1] http://econym.org.uk/gmap/egeoxml.htm
+
+Additional Features:
+
+* min-zoom - Set minimal auto zoom, useful when auto zooming to a single marker. Setting a minimal zoom would prevent zooming in too much where no map detail is available.
+* ExtInfoWindow[2] integration - Allows the use of ExtInfoWindow fr InfoWindows(bubbles). (in development)
+
+[2] http://gmaps-utility-library-dev.googlecode.com/svn/tags/extinfowindow/1.1/docs/examples.html
