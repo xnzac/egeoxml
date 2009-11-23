@@ -15,7 +15,7 @@ It is assumed you know how ExtInfoWindow works. If not, please familiarise yours
 
 When creating the EGeoXml object, add the following options:
 extinfowindow: 'custom_window_name'
-eiwoptions: { option1: value1, ...} - this is optional
+eiwoptions: { option1: value1, ...} - this is optional. It stands for 'extendedinfowindow options', similar to how 'iwoptions' stands for 'infowindow options'.
 
 Example:
 egeoXml = new EGeoXml("egeoXml", map, url, {
